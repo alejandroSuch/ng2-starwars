@@ -1,3 +1,6 @@
-<div *ngFor="let planet of planets">
-  {{ planet.name }}
+<h1>Planetas</h1>
+<div class="container">
+  <div class="row center">
+    <app-planet-card *ngFor="let planet of planets" [planet]="planet"></app-planet-card>
+  </div>
 </div>
