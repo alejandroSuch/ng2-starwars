@@ -5,12 +5,11 @@ import { SwapiService } from './swapi.service';
 @NgModule({
   declarations: [],
   imports     : [HttpModule],
-  providers   : [SwapiService],
-  // providers   : [],
+  providers   : [],
   bootstrap   : []
 })
 export class CoreModule {
-  /*static forRoot (): ModuleWithProviders {
+  static forRoot (): ModuleWithProviders {
     return {
       ngModule : CoreModule,
       providers: [SwapiService]
@@ -21,5 +20,5 @@ export class CoreModule {
     return {
       ngModule : CoreModule
     }
-  }*/
+  }
 }
