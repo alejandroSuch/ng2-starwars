@@ -11,21 +11,21 @@ import { FooterComponent } from './footer/footer.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { PlanetCardComponent } from './planets/planet-card/planet-card.component';
 import { routes } from './app.routes';
+import { PlanetsModule } from './planets/planets.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    FooterComponent,
-    PlanetsComponent,
-    PlanetCardComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    PlanetsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
