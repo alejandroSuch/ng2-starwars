@@ -9,7 +9,7 @@ const ONE_THOUSAND = 1000;
 })
 export class PopulationPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
+  transform(value: any, defaultValue?: any): any {
     let result = value;
 
     if(+value >= ONE_BILLION) {
@@ -18,6 +18,8 @@ export class PopulationPipe implements PipeTransform {
       result = `${(value / ONE_MILLION).toLocaleString()}M`
     } else if(+value >= ONE_THOUSAND) {
       result = `${(value / ONE_THOUSAND).toLocaleString()}K`
+    } else if(defaultValue) {
+      result = defaultValue;
     }
 
     return result;
