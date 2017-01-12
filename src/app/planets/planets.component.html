@@ -1,6 +1,7 @@
 <h1>Planetas</h1>
-<div class="container">
+<div class="container center">
   <div class="row center">
     <app-planet-card *ngFor="let planet of planets" [planet]="planet"></app-planet-card>
   </div>
+  <app-paginator [currentPage]="currentPage" [totalPages]="totalPages"></app-paginator>
 </div>

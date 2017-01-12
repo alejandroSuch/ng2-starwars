@@ -1,12 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { SwapiService } from './swapi.service';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [],
-  imports     : [HttpModule],
-  providers   : [],
-  bootstrap   : []
+  declarations: [PaginatorComponent],
+  imports     : [HttpModule, CommonModule],
+  exports     : [PaginatorComponent]
 })
 export class CoreModule {
   static forRoot (): ModuleWithProviders {
@@ -18,7 +19,7 @@ export class CoreModule {
 
   static forChild (): ModuleWithProviders {
     return {
-      ngModule : CoreModule
+      ngModule: CoreModule
     }
   }
 }

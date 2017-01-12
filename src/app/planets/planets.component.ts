@@ -9,6 +9,7 @@ import { SwapiService } from '../core/swapi.service';
 export class PlanetsComponent implements OnInit {
   private planets: any[] = [];
   private currentPage: number = 1;
+  private totalPages: number = 1;
 
   constructor (private swapiService: SwapiService) {
   }
@@ -18,6 +19,8 @@ export class PlanetsComponent implements OnInit {
         .getPlanets(this.currentPage)
         .then(({ results, page, pages }) => {
           this.planets = results;
+          this.currentPage = page;
+          this.totalPages = pages;
         });
   }
 
