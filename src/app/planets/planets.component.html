@@ -3,5 +3,8 @@
   <div class="row center">
     <app-planet-card *ngFor="let planet of planets" [planet]="planet"></app-planet-card>
   </div>
-  <app-paginator [currentPage]="currentPage" [totalPages]="totalPages"></app-paginator>
+  <app-paginator
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (onPageClicked)="goToPage($event)"></app-paginator>
 </div>

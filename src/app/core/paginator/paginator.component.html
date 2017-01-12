@@ -5,6 +5,6 @@
         'waves-effect' : (page !== currentPage)
       }"
   >
-    <a>{{ page }}</a>
+    <a (click)="pageClicked(page)">{{ page }}</a>
   </li>
 </ul>

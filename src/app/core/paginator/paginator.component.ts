@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector   : 'app-paginator',
@@ -8,6 +8,8 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from
 export class PaginatorComponent implements OnInit, OnChanges {
   @Input() currentPage: number = 0;
   @Input() totalPages: number = 0;
+
+  @Output() onPageClicked: EventEmitter<any> = new EventEmitter<any>();
 
   pageList: number[] = [];
 
@@ -20,6 +22,12 @@ export class PaginatorComponent implements OnInit, OnChanges {
   ngOnChanges (changes: { [propName: string]: SimpleChange }) {
     if (changes['totalPages'] && !changes['totalPages'].isFirstChange()) {
       this.pageList = Array.from({ length: changes['totalPages'].currentValue }, (v, k) => k + 1);
+    }
+  }
+
+  pageClicked (pageNumber) {
+    if(pageNumber !== this.currentPage) {
+      this.onPageClicked.emit(pageNumber);
     }
   }
 

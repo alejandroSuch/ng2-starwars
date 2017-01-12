@@ -42,7 +42,7 @@ export class SwapiService {
     const result = res.json();
 
     result.page = page;
-    result.pages = Math.ceil(result.count / result.results.length);
+    result.pages = Math.ceil(result.count / 10);
 
     return result;
   }

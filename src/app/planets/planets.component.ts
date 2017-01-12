@@ -15,8 +15,12 @@ export class PlanetsComponent implements OnInit {
   }
 
   ngOnInit () {
+    this.goToPage(this.currentPage);
+  }
+
+  goToPage(pageNumber) {
     this.swapiService
-        .getPlanets(this.currentPage)
+        .getPlanets(pageNumber)
         .then(({ results, page, pages }) => {
           this.planets = results;
           this.currentPage = page;
