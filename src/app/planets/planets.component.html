@@ -1,10 +1,11 @@
 <h1>Planetas</h1>
-<div class="container center">
+<div class="container center" [ngClass]="{'disabled': loading}">
   <div class="row center">
     <app-planet-card *ngFor="let planet of planets" [planet]="planet"></app-planet-card>
   </div>
   <app-paginator
     [currentPage]="currentPage"
     [totalPages]="totalPages"
-    (onPageClicked)="goToPage($event)"></app-paginator>
+    [disabled]="loading"
+    (onPageClicked)="onPaginate($event)"></app-paginator>
 </div>

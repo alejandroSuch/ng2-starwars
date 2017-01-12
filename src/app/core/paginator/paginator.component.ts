@@ -8,6 +8,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChange, Output, EventEmitter
 export class PaginatorComponent implements OnInit, OnChanges {
   @Input() currentPage: number = 0;
   @Input() totalPages: number = 0;
+  @Input() disabled:boolean = false;
 
   @Output() onPageClicked: EventEmitter<any> = new EventEmitter<any>();
 
@@ -26,7 +27,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   pageClicked (pageNumber) {
-    if(pageNumber !== this.currentPage) {
+    if(pageNumber !== this.currentPage && !this.disabled) {
       this.onPageClicked.emit(pageNumber);
     }
   }
