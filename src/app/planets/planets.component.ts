@@ -13,7 +13,7 @@ export class PlanetsComponent implements OnInit, OnDestroy {
   private currentPage: number = -1;
   private totalPages: number = -1;
   private subscription: Subscription;
-  private loading:boolean = false;
+  private loading: boolean = false;
 
   constructor (private swapiService: SwapiService,
                private router: Router,
