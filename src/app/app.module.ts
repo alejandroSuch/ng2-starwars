@@ -12,12 +12,14 @@ import { PlanetsComponent } from './planets/planets.component';
 import { PlanetCardComponent } from './planets/planet-card/planet-card.component';
 import { routes } from './app.routes';
 import { PlanetsModule } from './planets/planets.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
