@@ -1,0 +1,9 @@
+:host .population {
+  visibility: hidden;
+}
+
+:host.hovered .population {
+  visibility: visible;
+}
+
+
