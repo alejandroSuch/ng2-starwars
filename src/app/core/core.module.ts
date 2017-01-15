@@ -3,9 +3,10 @@ import { HttpModule } from '@angular/http';
 import { SwapiService } from './swapi.service';
 import { PaginatorComponent } from './paginator/paginator.component';
 import { CommonModule } from '@angular/common';
+import {PageItemComponent} from "./paginator/page-item/page-item.component";
 
 @NgModule({
-  declarations: [PaginatorComponent],
+  declarations: [PaginatorComponent, PageItemComponent],
   imports     : [HttpModule, CommonModule],
   exports     : [PaginatorComponent]
 })

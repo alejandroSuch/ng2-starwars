@@ -1,35 +1,56 @@
-import { Component, OnInit, Input, OnChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChange, Output, EventEmitter} from "@angular/core";
+import {PaginatorService} from "./paginator.service";
 
 @Component({
-  selector   : 'app-paginator',
+  selector: 'app-paginator',
   templateUrl: './paginator.component.html',
-  styleUrls  : ['./paginator.component.css']
+  styleUrls: ['./paginator.component.css'],
+  providers: [PaginatorService]
 })
 export class PaginatorComponent implements OnInit, OnChanges {
   @Input() currentPage: number = 0;
   @Input() totalPages: number = 0;
-  @Input() disabled:boolean = false;
+  @Input() disabled: boolean = false;
 
-  @Output() onPageClicked: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onPaginate: EventEmitter<any> = new EventEmitter<any>();
 
   pageList: number[] = [];
 
-  constructor () {
+  constructor(private paginatorService: PaginatorService) {
+    this
+      .paginatorService
+      .$pageClickAnnounced
+      .subscribe((page) => {
+        if (page !== this.currentPage && !this.disabled) {
+          this
+            .onPaginate
+            .emit(page);
+
+          this
+            .paginatorService
+            .announcePageChanged(page);
+        }
+      });
   }
 
-  ngOnInit () {
-  }
+  ngOnChanges(changes: {[propName: string]: SimpleChange}) {
+    if (changes['currentPage']) {
+      this
+        .paginatorService
+        .announcePageChanged(changes['currentPage'].currentValue);
+    }
 
-  ngOnChanges (changes: { [propName: string]: SimpleChange }) {
     if (changes['totalPages'] && !changes['totalPages'].isFirstChange()) {
-      this.pageList = Array.from({ length: changes['totalPages'].currentValue }, (v, k) => k + 1);
+      this.pageList = Array.from({length: changes['totalPages'].currentValue}, (v, k) => k + 1);
     }
   }
 
-  pageClicked (pageNumber) {
-    if(pageNumber !== this.currentPage && !this.disabled) {
-      this.onPageClicked.emit(pageNumber);
-    }
+  ngOnInit() {
   }
 
+  afterListItemsInitialized() {
+    this
+      .paginatorService
+      .announcePageChanged(this.currentPage);
+  }
 }

@@ -1,10 +1,7 @@
 <ul class="pagination">
-  <li *ngFor="let page of pageList"
-      [ngClass]="{
-        'active indigo' : (page === currentPage),
-        'waves-effect' : (page !== currentPage)
-      }"
-  >
-    <a (click)="pageClicked(page)">{{ page }}</a>
-  </li>
+  <app-page-item
+    *ngFor="let page of pageList; let last = last"
+    [page]="page"
+    [isLast]="last"
+    (onLastInitialized)="afterListItemsInitialized($event)"></app-page-item>
 </ul>
