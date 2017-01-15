@@ -8,9 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls  : ['./planet.component.css']
 })
 export class PlanetComponent implements OnInit {
-  private planet: any = {};
-  private residents   = null;
-  private movies      = null;
+  private planet: any      = {};
+  private loadingResidents = false;
+  private residents        = null;
+  private loadingMovies    = false;
+  private movies           = null;
 
   constructor (private swapiService: SwapiService, private route: ActivatedRoute) {
   }
@@ -33,6 +35,7 @@ export class PlanetComponent implements OnInit {
   }
 
   private getMovies () {
+    this.loadingMovies = true;
     const filmPromises = [];
 
     this.planet.films.forEach((film: any) => {
@@ -40,15 +43,19 @@ export class PlanetComponent implements OnInit {
       filmPromises.push(this.swapiService.getFilm(id));
     });
 
-    Promise.all(filmPromises).then((movies) => {
-      this.movies = null;
-      if (movies && movies.length > 0) {
-        this.movies = movies;
-      }
-    });
+    Promise
+      .all(filmPromises)
+      .then((movies) => {
+        this.movies = null;
+        if (movies && movies.length > 0) {
+          this.movies = movies;
+        }
+        this.loadingMovies = false;
+      });
   }
 
   private getResidents () {
+    this.loadingResidents  = true;
     const residentPromises = [];
 
     this.planet.residents.forEach((resident: any) => {
@@ -61,6 +68,7 @@ export class PlanetComponent implements OnInit {
       if (residents && residents.length > 0) {
         this.residents = residents;
       }
+      this.loadingResidents = false;
     });
   }
 

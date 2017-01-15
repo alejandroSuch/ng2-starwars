@@ -10,6 +10,7 @@
         <p>Terrain: {{ planet.terrain }}</p>
         <p>Water surface: {{ planet.surface_water }}%</p>
         <p>Population: {{ planet.population | population:'???' }} inhabitants</p>
+
         <ul *ngIf="residents" class="collection with-header">
           <li class="collection-header"><h5>Residents</h5></li>
           <li *ngFor="let resident of residents"
@@ -21,6 +22,9 @@
             </div>
           </li>
         </ul>
+
+        <app-preloader *ngIf="loadingResidents || loadingMovies"></app-preloader>
+
         <ul *ngIf="movies" class="collection with-header">
           <li class="collection-header"><h5>Films</h5></li>
           <li *ngFor="let movie of movies"

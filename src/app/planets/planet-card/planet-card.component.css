@@ -1,8 +1,8 @@
-:host .population {
+.population {
   visibility: hidden;
 }
 
-:host.hovered .population {
+.hovered .population {
   visibility: visible;
 }
 
