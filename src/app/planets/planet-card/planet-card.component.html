@@ -1,11 +1,11 @@
 <div class="col s12 m6">
   <div class="card">
-    <div class="card-content">
+    <div class="card-content" (click)="planetClicked()">
       <span class="card-title truncate">{{ planet.name }}</span>
       <p class="population">{{ planet.population | population:'???' }} inhabitants</p>
     </div>
     <div class="card-action right-align">
-      <a>Ver</a>
+      <a [routerLink]="['/planets', planet.id]" preserveQueryParams>Ver</a>
     </div>
   </div>
 </div>

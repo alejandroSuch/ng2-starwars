@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SwapiService } from '../core/swapi.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,11 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls  : ['./planets.component.css']
 })
 export class PlanetsComponent implements OnInit, OnDestroy {
-  private planets: any[] = [];
+  private planets: any[]      = [];
   private currentPage: number = -1;
-  private totalPages: number = -1;
+  private totalPages: number  = -1;
   private subscription: Subscription;
-  private loading: boolean = false;
+  private loading: boolean    = false;
 
   constructor (private swapiService: SwapiService,
                private router: Router,
@@ -31,8 +31,8 @@ export class PlanetsComponent implements OnInit, OnDestroy {
   }
 
   onPaginate (page) {
-    const commands = ['./'];
-    const extras = { relativeTo: this.route, queryParams: { page } };
+    const commands                 = ['./'];
+    const extras: NavigationExtras = { relativeTo: this.route, queryParams: { page } };
 
     this.router.navigate(commands, extras);
   }
@@ -47,11 +47,18 @@ export class PlanetsComponent implements OnInit, OnDestroy {
     this.swapiService
         .getPlanets(page)
         .then(({ results, page, pages }) => {
-          this.planets = results;
+          this.planets     = results;
           this.currentPage = page;
-          this.totalPages = pages;
-          this.loading = false;
+          this.totalPages  = pages;
+          this.loading     = false;
         });
+  }
+
+  goToPlanet (id) {
+    const commands                 = ['./', id];
+    const extras: NavigationExtras = { relativeTo: this.route, preserveQueryParams: true };
+
+    this.router.navigate(commands, extras);
   }
 
 }

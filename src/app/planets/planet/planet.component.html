@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title truncate">{{ planet.name }}</span>
+        <p>Rotation period: {{ planet.rotation_period }} hours</p>
+        <p>Orbital period: {{ planet.orbital_period }} days</p>
+        <p>Diameter: {{ planet.diameter }} Km.</p>
+        <p>Gravity: {{ planet.gravity }}</p>
+        <p>Terrain: {{ planet.terrain }}</p>
+        <p>Water surface: {{ planet.surface_water }}%</p>
+        <p>Population: {{ planet.population | population:'???' }} inhabitants</p>
+        <ul *ngIf="residents" class="collection with-header">
+          <li class="collection-header"><h5>Residents</h5></li>
+          <li *ngFor="let resident of residents"
+              class="collection-item">
+            <div>
+              {{ resident.name }}
+              <a [routerLink]="['/people', resident.id]"
+                 class="secondary-content"><i class="material-icons">send</i></a>
+            </div>
+          </li>
+        </ul>
+        <ul *ngIf="movies" class="collection with-header">
+          <li class="collection-header"><h5>Films</h5></li>
+          <li *ngFor="let movie of movies"
+              class="collection-item">
+            <div>
+              {{ movie.title }}
+              <a [routerLink]="['/movies', movie.id]"
+                 class="secondary-content"><i class="material-icons">send</i></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
