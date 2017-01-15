@@ -8,10 +8,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import { PlanetsComponent } from './planets/planets.component';
-import { PlanetCardComponent } from './planets/planet-card/planet-card.component';
 import { routes } from './app.routes';
-import { PlanetsModule } from './planets/planets.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
@@ -26,8 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    CoreModule.forRoot(),
-    PlanetsModule
+    CoreModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
