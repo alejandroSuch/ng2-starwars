@@ -46,7 +46,7 @@ export class PlanetsComponent implements OnInit, OnDestroy {
 
     this.swapiService
         .getPlanets(page)
-        .then(({ results, page, pages }) => {
+        .subscribe(({ results, page, pages }) => {
           this.planets     = results;
           this.currentPage = page;
           this.totalPages  = pages;
